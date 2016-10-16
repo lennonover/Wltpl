@@ -1,0 +1,25 @@
+{
+  "name": "Wltpl",
+  "version": "0.0.1",
+  "description": "类似artTemplate的模板引擎",
+  "main": "./builds/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "template",
+    "engine"
+  ],
+  "author": "walei",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "clean-webpack-plugin": "^0.1.10",
+    "webpack": "^1.13.1"
+  }
+}
