@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Wltpl by lennonover</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Wltpl</h1>
+        <p>Wltpl 模板引擎</p>
+
+        <p class="view"><a href="https://github.com/lennonover/Wltpl">View the Project on GitHub <small>lennonover/Wltpl</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/lennonover/Wltpl/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/lennonover/Wltpl/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/lennonover/Wltpl">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="wltpl" class="anchor" href="#wltpl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wltpl</h1>
+
+<p>有用过Handlebars和Jade，这两款引擎各有优缺点，handlebars语法简洁容易上手但是写起来局限性有点大，Jade用起来很灵活但是坑爹的是空格如果团队不统一IDE就哭吧！就想自己写一个语法灵活用起来比较方便的模板引擎，这个模板语法基本遵循artTemplate，关于artTemplate的速度达到理论极限，实际说的是渲染速度，它的综合速度并不快。</p>
+
+<h2>
+<a id="使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>使用</h2>
+
+<pre><code>&lt;script src="builds/wltpl.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>
+<a id="表达式" class="anchor" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>表达式</h2>
+
+<h3>
+<a id="输出表达式" class="anchor" href="#%E8%BE%93%E5%87%BA%E8%A1%A8%E8%BE%BE%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>输出表达式</h3>
+
+<p>默认对数据字符串做转义处理 编码可以防止数据中含有 HTML 字符串，避免引起 XSS 攻击。</p>
+
+<pre><code>{{variable}} 
+{{variable.content}}
+</code></pre>
+
+<p>不对替换的数据做转义处理</p>
+
+<pre><code>{{#variable}} 
+{{#variable.content}}
+</code></pre>
+
+<h3>
+<a id="if表达式" class="anchor" href="#if%E8%A1%A8%E8%BE%BE%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>if表达式</h3>
+
+<pre><code>{{if expression}} 
+{{else if}} 
+{{else}} 
+{{/if}}
+</code></pre>
+
+<h3>
+<a id="遍历表达式" class="anchor" href="#%E9%81%8D%E5%8E%86%E8%A1%A8%E8%BE%BE%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>遍历表达式</h3>
+
+<p>其中index和value为固定的变量名，表示数组/对象的key，value</p>
+
+<p>只能这一种写法 </p>
+
+<pre><code>{{each list}}
+    &lt;li&gt;{{$index}} - {{$value.user}}&lt;/li&gt;
+{{/each}}
+</code></pre>
+
+<p>artTemplate还支持这样写    </p>
+
+<pre><code>{{each list as value index}}
+    &lt;li&gt;{{index}} - {{value.user}}&lt;/li&gt;
+{{/each}}
+</code></pre>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<pre><code>var contentTpl = 
+  '&lt;h1&gt;{{title}}&lt;/h1&gt;\n'+
+  '{{if isPic}}\n'+
+      '&lt;img src="{{imgUrl}}"&gt;\n'+
+  '{{else}}\n'+
+    '&lt;div class="content"&gt;\n'+
+      '{{if textTitle}}\n'+
+        '&lt;h4&gt;{{#textTitle}}&lt;/h4&gt;\n'+
+      '{{/if}}\n'+
+    '&lt;/div&gt;\n'+
+  '{{/if}}';
+var mockdata = {
+  imgUrl: "https://placem.at/people?w=640&amp;h=480",
+  textTitle: '这是小&lt;a&gt;标题&lt;/a&gt;',
+  title:"这是&lt;a&gt;标题&lt;/a&gt;",
+  isPic: false
+};
+document.write(Wltpl(contentTpl, mockdata));
+</code></pre>
+
+<p><a href="https://lennonover.github.io/Wltpl/test/BrowerTest.html">展示</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/lennonover">lennonover</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
