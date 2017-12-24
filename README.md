@@ -30,7 +30,7 @@
 
 ### 遍历表达式
 
-其中index和value为固定的变量名，表示数组/对象的key，value
+其中 index 和 value 为固定的变量名，表示数组/对象的 key，value
 
 只能这一种写法 
     
